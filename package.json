@@ -1,0 +1,24 @@
+{
+  "name": "job-portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sohilmansoori786/backend-task-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sohilmansoori786/backend-task-3/issues"
+  },
+  "homepage": "https://github.com/sohilmansoori786/backend-task-3#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.10.0",
+    "nanoid": "^6.0.1"
+  }
+}
