@@ -5,13 +5,16 @@ export const registerControllers= async(req,res)=>{        //function
         const {name,email,password}=req.body
         //validate
         if(!name){
-            return res.send({success:false,message:'please provide name'});
+            //return res.send({success:false,message:'please provide name'});
+            next("name is required")
         }
         if(!email){
-            return res.send({success:false,message:'please provide email'});
+            //return res.send({success:false,message:'please provide email'});
+            next("email is required")
         }
         if(!password){
-            return res.send({success:false,message:'please provide password'});
+            //return res.send({success:false,message:'please provide password'});
+            next("password is required and greater than 6 character")
         }
         const exisitingUser=await usermodel.findOne({email})      //variable
         if(exisitingUser){
@@ -30,12 +33,8 @@ export const registerControllers= async(req,res)=>{        //function
         
     }
     catch ( error ){
-        console.log(error)
-        res.send({
-         message:'Error In Register Controller',
-         success:false,
-         error
-        })
+       next(error);         //directly use it by using middleware 
+                            //execution of next function
     }
 };
   
