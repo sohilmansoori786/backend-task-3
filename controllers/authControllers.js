@@ -18,10 +18,7 @@ export const registerControllers= async(req,res)=>{        //function
         }
         const exisitingUser=await usermodel.findOne({email})      //variable
         if(exisitingUser){
-            return res.send({
-                  success:false,
-                  message:'Email Already Register Please login'
-            })
+           next("Email Already register please login")
         }
         const user =await usermodel.create({name,password,email})    //variable
         res.send({
