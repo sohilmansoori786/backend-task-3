@@ -1,6 +1,6 @@
 import usermodel from "../models/usermodel.js";
 
-export const registerControllers= async(req,res)=>{        //function
+export const registerControllers= async(req,res,next)=>{        //function
     try{
         const {name,email,password}=req.body
         //validate
