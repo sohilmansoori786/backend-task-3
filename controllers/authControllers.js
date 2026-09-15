@@ -8,10 +8,10 @@ export const registerControllers= async(req,res)=>{        //function
             return res.send({success:false,message:'please provide name'});
         }
         if(!email){
-            return res.send({success:false,message:'please provide name'});
+            return res.send({success:false,message:'please provide email'});
         }
         if(!password){
-            return res.send({success:false,message:'please provide name'});
+            return res.send({success:false,message:'please provide password'});
         }
         const exisitingUser=await usermodel.findOne({email})      //variable
         if(exisitingUser){
@@ -20,7 +20,7 @@ export const registerControllers= async(req,res)=>{        //function
                   message:'Email Already Register Please login'
             })
         }
-        const user =await userModel.create({name,password,email})    //variable
+        const user =await usermodel.create({name,password,email})    //variable
         res.send({
             success:true,
             message:'User Created Successfully',
