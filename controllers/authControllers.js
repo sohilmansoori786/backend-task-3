@@ -6,24 +6,24 @@ export const registerControllers= async(req,res,next)=>{        //function
         //validate
         if(!name){
             //return res.send({success:false,message:'please provide name'});
-            next("name is required")     //call
+            return next("name is required")     //call
         }
         if(!email){
             //return res.send({success:false,message:'please provide email'});
-            next("email is required")
+            return next("email is required")
         }
         if(!password){
             //return res.send({success:false,message:'please provide password'});
-            next("password is required and greater than 6 character")
+            return next("password is required and greater than 6 character")
         }
-        const exisitingUser=await usermodel.findOne({email})      //variable
+        const exisitingUser=await usermodel.findOne({email});      //variable
         if(exisitingUser){
            next("Email Already register please login")
         }
         const user =await usermodel.create({name,password,email})    //variable
          
          //token    //token used to verify identity of user.
-       const token=user.createJWT()
+     
         
         res.send({
             success:true,

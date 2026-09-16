@@ -36,8 +36,9 @@ userSchema.pre("save",async function(){          //hashing password before store
     this.password =await bcrypt.hash(this.password,salt);
 });
  
-//JSON WEBTOKEN
-  userSchema.methods.createJWT =function(){
-    return JWT.sign({userId:this._id},process.env.JWT_SECRET, {expiresIn:'1d'})
-  }    
+JSON WEBTOKEN
+ userSchema.methods.createJWT =function(){
+   return JWT.sign({userId:this._id},process.env.JWT_SECRET, {expiresIn:'1d'})
+ }
+     
 export default mongoose.model('User',userSchema )
