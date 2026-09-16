@@ -48,7 +48,9 @@ export const loginController=async(req,res,next)=>{              //function
      //find user by email
      const user=await usermodel.findOne({email})
      if(!user){
-        return next('Invalid Username or Password')
+        next('user not found')
+        return res.status(404)
+        
      }
      //Compare Password
      const isMatch=await user.comparePasswords(password)
