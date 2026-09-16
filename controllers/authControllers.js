@@ -6,7 +6,7 @@ export const registerControllers= async(req,res,next)=>{        //function
         //validate
         if(!name){
             //return res.send({success:false,message:'please provide name'});
-            next("name is required")
+            next("name is required")     //call
         }
         if(!email){
             //return res.send({success:false,message:'please provide email'});
@@ -21,10 +21,15 @@ export const registerControllers= async(req,res,next)=>{        //function
            next("Email Already register please login")
         }
         const user =await usermodel.create({name,password,email})    //variable
+         
+         //token    //token used to verify identity of user.
+       const token=user.createJWT()
+        
         res.send({
             success:true,
             message:'User Created Successfully',
             user,
+            token
         });
 
         

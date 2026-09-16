@@ -1,5 +1,5 @@
 //error Middleware //decide next function execution
-const errorMiddleware =(err,req,res,next)=>{
+const errorMiddleware = (err,req,res,next)=>{
     console.log(err);
     res.send({
         success:false,
@@ -8,4 +8,4 @@ const errorMiddleware =(err,req,res,next)=>{
     });
 };
 
-export default errorMiddleware
+export default errorMiddleware;
