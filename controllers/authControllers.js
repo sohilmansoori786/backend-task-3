@@ -1,5 +1,5 @@
 import usermodel from "../models/usermodel.js";
-
+                //user register
 export const registerControllers= async(req,res,next)=>{        //function
     try{
         const {name,email,password}=req.body
@@ -34,10 +34,35 @@ export const registerControllers= async(req,res,next)=>{        //function
         
     }
     catch ( error ){
-       next(error);         //directly use it by using middleware 
+       return next(error);         //directly use it by using middleware 
                             //execution of next function
     }
 };
-  
-
+                //Login API
+export const loginController=async(req,res,next)=>{              //function
+     const {email,password}=req.body
+     //validation
+     if(!email||!password){
+        return next('please provide all fields')
+     }
+     //find user by email
+     const user=await usermodel.findOne({email})
+     if(!user){
+        return next('Invalid Username or Password')
+     }
+     //Compare Password
+     const isMatch=await user.comparePasswords(password)
+     if(!isMatch){
+        return next('Invalid Username or password ')
+     }
+     const token=user.createJWT();
+     res.send({
+        success:true,
+        message:"Login Successfully",
+        user,
+        token, 
+     })
+};
     
+  
+ 

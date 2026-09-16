@@ -1,12 +1,16 @@
 import express from'express'
-import { registerControllers } from '../controllers/authControllers.js'
+import { registerControllers, loginController} from '../controllers/authControllers.js'
 
 //router objects
 const router =express.Router()  //router-->object hai.
 
 //routes
+
+//REGISTER POST
 router.post('/register',registerControllers)
 
+//LOGIN POST
+router.post('/login',loginController)
 
 
 

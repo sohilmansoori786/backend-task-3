@@ -3,7 +3,7 @@ const errorMiddleware = (err,req,res,next)=>{
     console.log(err);
     res.send({
         success:false,
-        message:"Something went wrong",
+        message:err,
         err,
     });
 };

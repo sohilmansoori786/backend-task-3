@@ -30,17 +30,27 @@ const userSchema=new mongoose.Schema({          //create new mongoose schema
 },
    { timestamps:true } 
 );
+
 //Middlewares
 userSchema.pre("save",async function(){          //hashing password before store
     const salt=await bcrypt.genSalt(10);       // sallt->variable ,gensalt->generate salt
     this.password =await bcrypt.hash(this.password,salt);
 });
- //JSON WEBTOKEN
-userSchema.methods.createJWT= function(){
-    return JWT.sign({userId:this._id},process.env.JWT_SECRET,{expiresIn:'1d '})
+
+
+//Compare Password
+userSchema.methods.comparePasswords=async function(userpassword){
+    const isMatch =await bcrypt.compare(userpassword,this.password)
+    return isMatch;
 }
 
 
+
+
+ //JSON WEBTOKEN
+userSchema.methods.createJWT= function(){
+    return JWT.sign({userId:this._id},process.env.JWT_SECRET,{expiresIn:'1d'})
+}
 
 
 export default mongoose.model('User',userSchema )

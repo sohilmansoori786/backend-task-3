@@ -34,7 +34,7 @@ app.use("/api/v1/test",testRoutes);   //<--import
 app.use("/api/v1/auth",authRoutes);
 
 //validation Middleware
-app.use(errorMiddleware);
+
 
 //port
 const PORT=process.env.PORT || 8000
