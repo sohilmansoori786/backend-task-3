@@ -8,11 +8,12 @@ import morgan from 'morgan';
 
 
  //files imports
-import connectDB from "./config/db.js ";
+import connectDB from "./config/db.js";
  //routes import
 import testRoutes from './routes/testRoutes.js'
 import authRoutes from "./routes/authRoutes.js"    //For server it shows route is created
 import errorMiddleware from "./middlewares/errorMiddleware.js";
+import userRoutes from "./routes/userRoutes.js"
 
 
 //Dot env config
@@ -37,6 +38,7 @@ app.use(morgan("dev"))
 // })
 app.use("/api/v1/test",testRoutes);   //<--import
 app.use("/api/v1/auth",authRoutes);
+app.use("/api/v1/user",userRoutes);
 
 //validation Middleware
 
