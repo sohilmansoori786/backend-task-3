@@ -32,7 +32,8 @@ const userSchema=new mongoose.Schema({          //create new mongoose schema
 );
 
 //Middlewares
-userSchema.pre("save",async function(){          //hashing password before store
+userSchema.pre("save",async function(){   
+    if(!this.isModified) return;       //hashing password before store
     const salt=await bcrypt.genSalt(10);       // sallt->variable ,gensalt->generate salt
     this.password =await bcrypt.hash(this.password,salt);
 });
