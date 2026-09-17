@@ -33,10 +33,10 @@ app.use(cors())
 app.use(morgan("dev"))
 
 //routes
-// app.use("/",function(req,next){
-//     console.log(req.body,req.statusCode,req.method)
-//     next();
-// })
+
+app.get("/", (req, res) => {
+    res.send("Backend API is running");
+});
 app.use("/api/v1/test",testRoutes);   //<--import
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1/user",userRoutes);
