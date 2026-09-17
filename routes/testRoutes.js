@@ -10,4 +10,4 @@ router.post("/test-post",userAuth, testPostController);
 
 
 //export
-export default router;
+export default router; 

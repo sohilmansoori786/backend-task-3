@@ -1,4 +1,5 @@
 import usermodel from "../models/usermodel.js"
+                  
 
 export const updateUserController=async(req,res,next)=>{
     const {name,email,lastname,location}=req.body
@@ -17,4 +18,12 @@ export const updateUserController=async(req,res,next)=>{
     user,
     token,
    });
-};
+}; 
+               //GET 
+ export const getAlluserControllers =async (req,res,next)=>{
+    const user =await usermodel.find({createdBy:req.user.userId})
+    res.status(200).send({
+        totalJob : user.length,
+        user
+    })
+}
